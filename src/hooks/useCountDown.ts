@@ -5,13 +5,14 @@ export const useCountDown = () => {
 
   const initData = {
     id: undefined,
-    time: 25 * 60,
+    time: 0.1 * 60,
     label: "00:00",
   };
 
   const [id, setId] = useState<number | undefined>(initData.id);
   const [time, setTime] = useState(initData.time);
   const [label, setLabel] = useState(initData.label);
+  const [percent, setPercent] = useState(0);
 
   const initFn = () => {
     setId(initData.id);
@@ -38,6 +39,9 @@ export const useCountDown = () => {
 
     setLabel(minutesStr + ":" + secondsStr);
 
+    const num = ((initData.time - time) / initData.time) * 100;
+    setPercent(Math.floor(num * 100) / 100);
+
     if (time <= 0) {
       seStarted(false);
       clearInterval(id);
@@ -49,5 +53,5 @@ export const useCountDown = () => {
     seStarted(true);
   };
 
-  return { time, label, startFn };
+  return { label, startFn, percent };
 };
