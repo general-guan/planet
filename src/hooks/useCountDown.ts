@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ipcRenderer } from "electron";
 
 export const useCountDown = () => {
   const [started, seStarted] = useState(false);
@@ -18,6 +19,10 @@ export const useCountDown = () => {
     setId(initData.id);
     setTime(initData.time);
     setLabel(initData.label);
+  };
+
+  const notifications = () => {
+    ipcRenderer.send("notifications", { title: "番茄时钟", body: "时间到！" });
   };
 
   useEffect(() => {
@@ -46,6 +51,7 @@ export const useCountDown = () => {
       seStarted(false);
       clearInterval(id);
       initFn();
+      notifications();
     }
   }, [time]);
 

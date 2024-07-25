@@ -2,7 +2,7 @@
 // BrowserWindow 创建并控制浏览器窗口
 import { app, BrowserWindow } from "electron";
 import path from "path";
-
+import { ipcMainInit } from "./ipcMain";
 // 定义全局变量，获取窗口实例
 let win: BrowserWindow | null;
 
@@ -22,4 +22,4 @@ const createWindow = () => {
   }
 };
 //在Electron完成初始化时被触发
-app.whenReady().then(createWindow);
+app.whenReady().then(createWindow).then(ipcMainInit);
