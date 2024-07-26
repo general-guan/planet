@@ -21,5 +21,8 @@ const createWindow = () => {
     win.loadFile(path.join(__dirname, "../dist/index.html"));
   }
 };
+
+app.setAppUserModelId("行星");
+
 //在Electron完成初始化时被触发
 app.whenReady().then(createWindow).then(ipcMainInit);

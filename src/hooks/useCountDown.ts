@@ -6,11 +6,11 @@ export const useCountDown = () => {
 
   const initData = {
     id: undefined,
-    time: 0.1 * 60,
+    time: 25 * 60,
     label: "00:00",
   };
 
-  const [id, setId] = useState<number | undefined>(initData.id);
+  const [id, setId] = useState<NodeJS.Timeout | undefined>(initData.id);
   const [time, setTime] = useState(initData.time);
   const [label, setLabel] = useState(initData.label);
   const [percent, setPercent] = useState(0);
