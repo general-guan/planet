@@ -2,6 +2,7 @@ import React from "react";
 import { ClockCircleOutlined, IeOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Menu } from "antd";
+import { useMenuStore, CurrentMenu } from "../store/menuStore";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -19,14 +20,16 @@ const items: MenuItem[] = [
 ];
 
 export const MenuNav: React.FC = () => {
+  const { currentMenu, setCurrentMenu } = useMenuStore((state) => state);
+
   const onClick: MenuProps["onClick"] = (e) => {
-    console.log("click ", e);
+    setCurrentMenu(e.key as CurrentMenu);
   };
 
   return (
     <Menu
       onClick={onClick}
-      defaultSelectedKeys={["tomato-clock"]}
+      defaultSelectedKeys={[currentMenu]}
       mode="inline"
       items={items}
     />
