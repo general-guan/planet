@@ -8,6 +8,6 @@ interface MenuState {
 }
 
 export const useMenuStore = create<MenuState>((set) => ({
-  currentMenu: "tomato-clock",
+  currentMenu: "favorite-sites",
   setCurrentMenu: (menu) => set(() => ({ currentMenu: menu })),
 }));

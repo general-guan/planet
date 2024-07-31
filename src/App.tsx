@@ -17,7 +17,7 @@ function App() {
           <MenuNav />
         </Sider>
         <Layout>
-          <Content style={{ padding: "16px" }}>
+          <Content style={{ padding: "16px", overflow: "auto" }}>
             {currentMenu === "favorite-sites" && <FavoriteSites />}
             {currentMenu === "tomato-clock" && <TomatoClock />}
           </Content>
